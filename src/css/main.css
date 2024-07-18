@@ -1,0 +1,87 @@
+/* Reset styles*/
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    text-align: start;
+    list-style: none;
+    font-size: 1em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/**/
+:root {
+    /* Paleta de colores */
+    --primary: #4e73df;
+    --success: #1cc88a;
+    --info: #36b9cc;
+    --warning: #f6c23e;
+    --danger: #e74a3b;
+    --secondary: #858796;
+    --light: #f8f9fc;
+    --dark: #5a5c69;
+    --white: #ffffff;
+    --black: #000000;
+    --bg: #f8f4fc;
+    --text: #1c477c;
+    --btn: #0c3c74;
+
+    /* Tamaños de fuente */
+
+    --sm: 0.8em;
+    --md: 1em;
+    --lg: 1.5em;
+    --xl: 2em;
+    --xl2: 20.5em;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+.container {
+    padding: 30px 15px;
+}
+
+.text-field {
+    margin: 60px 0;
+}
+
+.text-area {
+    width: 100%;
+    border: none;
+    background-color: var(--bg);
+    font-size: var(--xl);
+    color: var(--text);
+}
+
+.text-area :hover {
+    border: solid 1px var(--btn);
+    background-color: red;
+}
+
+.btn {
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+}
+
+.alerta {
+    display: block;
+    font-size: var(--sm);
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: var(--btn);
+    color: var(--white);
+}
+
+.btn-light {
+    background-color: var(--light);
+    color: var(--text);
+    border: solid 1px var(--btn);
+}

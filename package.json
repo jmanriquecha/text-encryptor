@@ -1,0 +1,21 @@
+{
+  "name": "text-encryptor",
+  "version": "1.0.0",
+  "description": "Encriptador de texto - Alura Challenges ONE - Oracle",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d src"
+  },
+  "keywords": [
+    "Encryptor",
+    "JS",
+    "JavaScript",
+    "CSS3",
+    "HTML5"
+  ],
+  "author": "Jorge Manrique georgemac.28@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}
