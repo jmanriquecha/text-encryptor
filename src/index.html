@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <header>
+        <header class="header">
             <div class="logo"></div>
         </header>
         <div class="container">
@@ -18,18 +18,24 @@
             <main>
                 <div class="left">
                     <div class="text-field">
-                        <textarea name="texto" id="texto" class="text-area" rows="8"
+                        <textarea name="texto" id="texto" class="text-area text-xl text-regular" rows="8"
                             placeholder="Ingrese el texto aquí"></textarea>
                     </div>
                     <div class="group-buttons">
-                        <span class="exclamation">Solo letras minúsculas y sin acentos</span>
-                        <button class="btn btn-primary">Encriptar</button>
-                        <button class="btn btn-light">Desencriptar</button>
+                        <span class="exclamation text-sm text-regular">Solo letras minúsculas y sin acentos</span>
+                        <div class="buttons">
+                            <button class="btn btn-primary" id="btn-encriptar">Encriptar</button>
+                            <button class="btn btn-light" id="btn-desencriptar">Desencriptar</button>
+                        </div>
                     </div>
+                </div>
+                <div class="right">
                     <div class="text-show">
                         <div class="not-found"></div>
-                        <h2>Ningún mensaje fue encontrado</h2>
-                        <p>Ingrese el texto que desees encríptar o desencriptar</p>
+                        <h2 id="text-show-h2" class="text-lg text-bold">Ningún mensaje fue encontrado</h2>
+                        <p id="text-show-p" class="text-md text-regular">Ingrese el texto que desees encríptar o
+                            desencriptar</p>
+                        <button class="btn btn-light" id="btn-copy">Copiar</button>
                     </div>
                 </div>
             </main>
