@@ -16,10 +16,17 @@ texto.focus();
 
 // addEventListener
 btnEncriptar.addEventListener('click', function () {
-    textShowH2.classList.add('hidden');
-    textShowP.classList.remove('text-md');
-    textShowP.classList.add('text-lg', 'text-left');
-    textShowP.innerHTML = encriptarTexto(texto.value);
+    if (texto.value === '') {
+        textoDefecto();
+    } else {
+        // Modificar estilos
+        textShowH2.classList.add('hidden');
+        textShowP.classList.remove('text-md');
+        textShowP.classList.add('text-lg', 'text-left');
+
+        // Se muestra el texto cifrado
+        textShowP.innerHTML = encriptarTexto(texto.value);
+    }
 });
 
 /**
@@ -54,3 +61,17 @@ function encriptarTexto(texto) {
 
     return texto_encriptado;
 }
+
+function textoDefecto() {
+    // Estilos
+    textShowH2.classList.remove('hidden');
+    textShowP.classList.add('text-md');
+    textShowP.classList.remove('text-lg', 'text-left');
+
+    // Mensajes
+    textShowH2.innerHTML = 'Ningún mensaje fue encontrado';
+    textShowP.innerHTML = 'Ingrese el texto que desees encríptar o desencriptar';
+}
+
+// Se ejecuta al iniciar el programa
+textoDefecto()

@@ -161,6 +161,7 @@ main {
     background-repeat: no-repeat;
     background-size: 16px;
     width: 100%;
+    box-sizing: border-box;
     height: 16px;
     padding-left: 20px;
     margin-bottom: 16px;
@@ -182,15 +183,17 @@ main {
     background-color: var(--info);
 }
 
-.btn-light {
-    background-color: var(--white);
+.right {
+    display: flex;
+    width: 100%;
 }
 
 .text-show {
-    display: flex;
+    flex: 1;
+    max-width: 100%;
+    box-sizing: border-box;
     flex-direction: column;
     justify-content: center;
-    width: auto;
     align-items: center;
     background-color: var(--white);
     outline: none !important;
@@ -234,6 +237,11 @@ footer p {
 @media (min-width: 400px) {
     .container {
         padding: 0 40px;
+    }
+
+    .left {
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .buttons {
