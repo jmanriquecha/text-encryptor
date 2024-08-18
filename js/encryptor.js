@@ -6,14 +6,11 @@ const textShowP = obtenerElementoId('text-show-p');
 const btnEncriptar = obtenerElementoId('btn-encriptar');
 const btnDesencriptar = obtenerElementoId('btn-desencriptar');
 const btnCopy = obtenerElementoId('btn-copy');
-
+const arrPalabras = [];
 
 function obtenerElementoId(elemento) {
     return document.getElementById(elemento);
 }
-
-// Focus
-texto.focus();
 
 // addEventListener
 btnEncriptar.addEventListener('click', function () {
@@ -79,6 +76,7 @@ function encriptarTexto(texto) {
     }
 
     return texto_encriptado;
+
 }
 
 /**
@@ -87,11 +85,10 @@ function encriptarTexto(texto) {
  * @returns string
  */
 function desencriptarTexto(texto) {
-    texto = textoDesencriptado(texto, 'ai', 'a');
-    texto = textoDesencriptado(texto, 'enter', 'e');
-    texto = textoDesencriptado(texto, 'imes', 'i');
-    texto = textoDesencriptado(texto, 'ober', 'o');
-    texto = textoDesencriptado(texto, 'ufat', 'u');
+    for (const element of arrPalabras) {
+        texto = textoDesencriptado(texto, element.significado, element.letra);
+    }
+
     return texto;
 }
 
@@ -138,7 +135,7 @@ function textoDefecto() {
 }
 
 /**
- * Función para cambiar texto
+ * Función para copiar texto
  * @param {string} text 
  */
 async function copiarTexto(text) {
@@ -147,11 +144,41 @@ async function copiarTexto(text) {
         btnCopy.innerHTML = 'Texto Copiado!';
         setTimeout(() => {
             btnCopy.innerHTML = 'Copiar';
-        }, 2000);
+        }, 3000);
     } catch (error) {
         console.error(error.message);
     }
 }
 
-// Se ejecuta al iniciar el programa
+/**
+ * Lita de palabras con su definición
+ */
+function listaPlabras() {
+    addPalabraLista('a', 'ai');
+    addPalabraLista('e', 'enter');
+    addPalabraLista('i', 'imes');
+    addPalabraLista('o', 'ober');
+    addPalabraLista('u', 'ufat');
+}
+
+
+/**
+ * Función que agrega nueva palabra al array arrPalabras[]
+ * @param {string} letra 
+ * @param {string} significado 
+ */
+function addPalabraLista(letra, significado) {
+    arrPalabras.push({ letra, significado });
+}
+
+
+// Codigo que se ejecuta al iniciar el programa
+
+// Focus
+texto.focus();
+
+// Agrega palabras 
+listaPlabras();
+
+//
 textoDefecto()
