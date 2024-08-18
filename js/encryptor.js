@@ -5,6 +5,7 @@ const textShowH2 = obtenerElementoId('text-show-h2');
 const textShowP = obtenerElementoId('text-show-p');
 const btnEncriptar = obtenerElementoId('btn-encriptar');
 const btnDesencriptar = obtenerElementoId('btn-desencriptar');
+const btnCopy = obtenerElementoId('btn-copy');
 
 
 function obtenerElementoId(elemento) {
@@ -43,6 +44,9 @@ btnDesencriptar.addEventListener('click', function () {
         textShowP.innerHTML = desencriptarTexto(texto.value);
     }
 });
+
+btnCopy.addEventListener("click", () => copiarTexto(textShowP.innerHTML));
+
 
 /**
  * Función para encriptar el texto
@@ -83,13 +87,11 @@ function encriptarTexto(texto) {
  * @returns string
  */
 function desencriptarTexto(texto) {
-
     texto = textoDesencriptado(texto, 'ai', 'a');
     texto = textoDesencriptado(texto, 'enter', 'e');
     texto = textoDesencriptado(texto, 'imes', 'i');
     texto = textoDesencriptado(texto, 'ober', 'o');
     texto = textoDesencriptado(texto, 'ufat', 'u');
-
     return texto;
 }
 
@@ -133,6 +135,22 @@ function textoDefecto() {
     // Mensajes
     textShowH2.innerHTML = 'Ningún mensaje fue encontrado';
     textShowP.innerHTML = 'Ingrese el texto que desees encríptar o desencriptar';
+}
+
+/**
+ * Función para cambiar texto
+ * @param {string} text 
+ */
+async function copiarTexto(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        btnCopy.innerHTML = 'Texto Copiado!';
+        setTimeout(() => {
+            btnCopy.innerHTML = 'Copiar';
+        }, 2000);
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
 // Se ejecuta al iniciar el programa
