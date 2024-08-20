@@ -6,6 +6,8 @@ const textShowP = obtenerElementoId('text-show-p');
 const btnEncriptar = obtenerElementoId('btn-encriptar');
 const btnDesencriptar = obtenerElementoId('btn-desencriptar');
 const btnCopy = obtenerElementoId('btn-copy');
+const spanExclamation = obtenerElementoId('exclamation');
+
 const arrPalabras = [];
 
 function obtenerElementoId(elemento) {
@@ -42,7 +44,20 @@ btnDesencriptar.addEventListener('click', function () {
     }
 });
 
+// Activa el evento del boton copiar
 btnCopy.addEventListener("click", () => copiarTexto(textShowP.innerHTML));
+
+// Activa el evento para que el texto pase a minúscula y quita acentos
+texto.addEventListener('keyup', function () {
+    let minusculas = textoEnMinuscula(texto);
+    let sinAcentos = eliminarDiacriticosEs(minusculas);
+    texto.value = sinAcentos;
+});
+
+// Detecta si el boton de Bloq Mayus esta activo
+document.addEventListener('keydown', function (event) {
+    bloqMayusActivo(event);
+});
 
 
 /**
@@ -74,9 +89,7 @@ function encriptarTexto(texto) {
                 break;
         }
     }
-
     return texto_encriptado;
-
 }
 
 /**
@@ -88,7 +101,6 @@ function desencriptarTexto(texto) {
     for (const element of arrPalabras) {
         texto = textoDesencriptado(texto, element.significado, element.letra);
     }
-
     return texto;
 }
 
@@ -123,6 +135,9 @@ function textoDesencriptado(texto, palabra, remplazar) {
     return texto;
 }
 
+/**
+ * Se cargan textos por defecto
+ */
 function textoDefecto() {
     // Estilos
     textShowH2.classList.remove('hidden');
@@ -132,6 +147,16 @@ function textoDefecto() {
     // Mensajes
     textShowH2.innerHTML = 'Ningún mensaje fue encontrado';
     textShowP.innerHTML = 'Ingrese el texto que desees encríptar o desencriptar';
+
+    // Focus
+    texto.focus();
+
+    // Agrega palabras 
+    listaPlabras();
+
+    // mensaje mayus activado
+    spanExclamation.classList.add('show');
+
 }
 
 /**
@@ -141,8 +166,12 @@ function textoDefecto() {
 async function copiarTexto(text) {
     try {
         await navigator.clipboard.writeText(text);
-        btnCopy.innerHTML = 'Texto Copiado!';
+        btnCopy.classList.remove('btn-light');
+        btnCopy.classList.add('btn-primary')
+        btnCopy.innerHTML = '¡Texto Copiado!';
         setTimeout(() => {
+            btnCopy.classList.remove('btn-primary')
+            btnCopy.classList.add('btn-light');
             btnCopy.innerHTML = 'Copiar';
         }, 3000);
     } catch (error) {
@@ -151,7 +180,8 @@ async function copiarTexto(text) {
 }
 
 /**
- * Lita de palabras con su definición
+ * Lista de palabras con su definición
+ * Adiciona palabras
  */
 function listaPlabras() {
     addPalabraLista('a', 'ai');
@@ -171,14 +201,56 @@ function addPalabraLista(letra, significado) {
     arrPalabras.push({ letra, significado });
 }
 
+/**
+ * Convierte texto a minúsculas
+ * @param {String} input 
+ */
+function textoEnMinuscula(input) {
+    return input.value.toLowerCase();
+}
+
+/**
+ * Muestra mensaje que solo se permiten letras minusculas y sín acentos
+ * @param {string} event 
+ */
+function bloqMayusActivo(event) {
+    let mayus = event.getModifierState && event.getModifierState('CapsLock');
+    if (event.key === 'CapsLock') {
+        setTimeout(function () {
+            if (!mayus) {
+                isDisplayElement(spanExclamation);
+            } else {
+                isDisplayElement(spanExclamation, false);
+            }
+        }, 100);
+
+    }
+}
+
+// Elimina los diacríticos de un texto excepto si es una "ñ" (ES6)
+function eliminarDiacriticosEs(texto) {
+    return texto
+        .normalize('NFD')
+        .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi, "$1")
+        .normalize();
+}
+
+/**
+ * Mostrar y ocultar un elemento, display por defecto es true;
+ * @param {string} element 
+ * @param {string} status 
+ */
+function isDisplayElement(element, display = true) {
+    if (display) {
+        element.classList.add('show');
+        element.classList.remove('hidden');
+    } else {
+        element.classList.add('hidden');
+        element.classList.remove('show');
+    }
+}
 
 // Codigo que se ejecuta al iniciar el programa
 
-// Focus
-texto.focus();
-
-// Agrega palabras 
-listaPlabras();
-
-//
+// 
 textoDefecto()

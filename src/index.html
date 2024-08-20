@@ -22,7 +22,9 @@
                             placeholder="Ingrese el texto aquí"></textarea>
                     </div>
                     <div class="group-buttons">
-                        <span class="exclamation text-sm text-regular">Solo letras minúsculas y sin acentos</span>
+                        <span id="exclamation" class="exclamation text-sm text-regular hidden">Solo letras minúsculas y
+                            sin
+                            acentos</span>
                         <div class="buttons">
                             <button class="btn btn-primary" id="btn-encriptar">Encriptar</button>
                             <button class="btn btn-light" id="btn-desencriptar">Desencriptar</button>
@@ -34,7 +36,7 @@
                         <div class="not-found"></div>
                         <h2 id="text-show-h2" class="text-lg text-bold"></h2>
                         <p id="text-show-p" class="text-md text-regular"></p>
-                        <button class="btn btn-light" id="btn-copy">Copiar</button>
+                        <button class="btn btn-light hidden" id="btn-copy">Copiar</button>
                     </div>
                 </div>
             </main>
