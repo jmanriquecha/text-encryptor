@@ -23,7 +23,7 @@
     --light: #f8f9fc;
     --dark: #5a5c69;
     --white: #ffffff;
-    --black: #000000;
+    --black: #111111;
 
     /* Tamaños de fuente */
 
@@ -105,7 +105,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 64px;
     margin-bottom: 40px;
     width: 100%;
@@ -221,18 +221,47 @@ main {
     font-family: "Inter", sans-serif;
     text-align: center;
     margin-bottom: 32px;
+    box-sizing: border-box;
 }
 
 /*Footer*/
 footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: auto;
-    padding: 20px 0;
-    background-color: var(--dark);
+    gap: 5px;
+    margin-top: 5px;
+    padding: 40px 0;
+    background-color: var(--primary);
     color: var(--light);
 }
 
-footer p {
+footer .footer-redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light);
+    font-size: var(--lg);
+    font-family: "Inter", sans-serif;
+    gap: 5px;
+}
+
+footer .footer-redes img {
+    width: 30px;
+}
+
+footer small {
     text-align: center;
+}
+
+footer a {
+    color: var(--light);
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 /*Estilos para Tablet*/
@@ -268,7 +297,8 @@ footer p {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 940px;
+        height: auto;
+        min-height: 940px;
     }
 
     .text-field {
@@ -276,7 +306,8 @@ footer p {
     }
 
     .text-area {
-        height: 800px;
+        height: auto;
+        min-height: 800px;
     }
 
     .buttons {
@@ -284,7 +315,8 @@ footer p {
     }
 
     .text-show {
-        height: 940px;
+        height: auto;
+        min-height: 940px;
     }
 
     .text-show .not-found {
@@ -293,5 +325,10 @@ footer p {
         background-repeat: no-repeat;
         width: 336px;
         height: 304px;
+    }
+
+    footer {
+        flex-direction: row;
+        justify-content: space-around;
     }
 }
