@@ -18,6 +18,8 @@ function obtenerElementoId(elemento) {
 btnEncriptar.addEventListener('click', function () {
     if (texto.value === '') {
         textoDefecto();
+        // Oculta boton copiar
+        isDisplayElement(btnCopy, false);
     } else {
         // Modificar estilos
         textShowH2.classList.add('hidden');
@@ -26,12 +28,18 @@ btnEncriptar.addEventListener('click', function () {
 
         // Se muestra el texto cifrado
         textShowP.innerHTML = encriptarTexto(texto.value);
+
+        // se muestra boton copiar
+        isDisplayElement(btnCopy);
     }
 });
 
 btnDesencriptar.addEventListener('click', function () {
     if (texto.value === '') {
         textoDefecto();
+
+        // Oculta boton copiar
+        isDisplayElement(btnCopy, false);
     } else {
         // Modificar estilos
         textShowH2.classList.add('hidden');
@@ -41,6 +49,9 @@ btnDesencriptar.addEventListener('click', function () {
         // Se muestra el texto cifrado
         textShowP.innerHTML = ''
         textShowP.innerHTML = desencriptarTexto(texto.value);
+
+        // Muestra boton copiar
+        isDisplayElement(btnCopy);
     }
 });
 
